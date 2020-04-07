@@ -1,4 +1,4 @@
-int LEDPIN = A6;
+int LEDPIN = 6;
 
 void setup() {
   // put your setup code here, to run once:
@@ -17,18 +17,18 @@ void loop() {
     { 
         char readData;
 
-        readData = Serial.read();
-
-        if (readData == "on")
+        readData =(char) Serial.read();
+        Serial.println(readData);
+        if (readData == 'T')
         {
             digitalWrite(LEDPIN, HIGH);
         }
 
-        if (readData == "off")
+        if (readData == 'F')
         {
             digitalWrite(LEDPIN, LOW);
         }
         
     }
-    delay(1000);
+    delay(10);
 }

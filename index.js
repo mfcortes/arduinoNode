@@ -21,21 +21,10 @@ app.get('/:action', (req,resp) => {
     var action = req.params.action || req.params('action');
 
 
-    if (action == 'led')
-    {
-        arduinoSerialPort.write("1");
-        return resp.send('Prendimos la luz');
-    }
+    arduinoSerialPort.write(action);
+    return resp.send('Luz ' + action);
 
-    if (action == 'off'){
-        arduinoSerialPort.write("0");
-        return resp.send('Apagamos Led')
-    }
-
-    if (action == 'int') {
-        arduinoSerialPort.write("2");
-        return resp.send('luz inetermitente ');
-    }
+    
 });
 
 app.listen(port, () => {
